@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+	<script src="/scripts/get_progress.js"></script>
+	<title>My calculations</title>
+</head>
+<body>
+	<% include navbar.ejs %>
+	<h2>My calculations</h2>
+	<%if (results.length === 0){%>
+		<h2>No calculations yet</h2>
+	<%} else {%>
+		<div class="container">
+			<%for (var i = 0; i < results.length; ++i) {%>
+				<div class="calculation" id="<%=results[i]._id%>">
+					<div class="card col-lg-12">
+						<p>N = <%= results[i].Input%></p>
+						<%if (results[i].Progress === -1) {%>
+							<p class="percent" id="<%=results[i]._id%>">Status: In queue</p>
+						<%} else if (results[i].Progress < 100) {%>
+							<p class="percent" id="<%=results[i]._id%>">Status : In progress <%=results[i].Progress%>%</p>
+						<%} else {%>
+							<p class="percent" id="<%=results[i]._id%>">Result: <%=results[i].Output%></p>		
+						<%}%>
+						<%if (results[i].Progress < 100){%>
+						<div class="progress" id="<%=results[i]._id%>">
+							<div class="progress-bar bg-info" style="width: <%=results[i].Progress%>%" role="progressbar"  aria-valuemin="0" aria-valuemax="100" id="<%=results[i]._id%>"></div>
+						</div>
+						<%}%>
+
+					</div>
+				</div>
+			<%}%>
+		</div> 
+	<%}%>
+</div>
+</body>
+</html>

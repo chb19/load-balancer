@@ -1,0 +1,10 @@
+<% include navbar.ejs %>
+<% include ./partials/messages %>
+
+<form action="/new_calculation" method="POST">
+  <div class="form-group">
+    <label for="Number">Calculate Euler`s function</label>
+    <input type="number" name="number" class="form-control" id="Number" min="2" max="1000000000" placeholder="Enter Number">
+  </div>
+  <button type="submit" class="btn btn-outline-secondary">Submit</button>
+</form>
